@@ -3,12 +3,14 @@ CROSS_COMPILE?=aarch64-none-linux-gnu-
 CC=$(CROSS_COMPILE)gcc
 SOURCES=writer.c
 TARGETS=writer
+CFLAGS ?= -Wall 
+LDFLAGS ?= -pthread
 
 #rule
 all: $(TARGETS) execution
 
 $(TARGETS): $(SOURCES)
-	$(CC) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
 	@rm -rf $(TARGETS)
